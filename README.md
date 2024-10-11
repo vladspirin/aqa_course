@@ -9,3 +9,5 @@ Install all needed additional libraries using PIP, example pip install <your_lib
 ### Contributors
 
 Add all needed contributors
+
+Add new code to DEV branch and wait for review before the merge to main
