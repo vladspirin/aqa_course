@@ -1,6 +1,11 @@
 """This is Homework 3.1."""
 
 
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='')
+_log = logging.getLogger(__name__)
 # task 01 == Розділіть змінну alice_in_wonderland так,
 # щоб вона займала декілька фізичних лінії
 # task 02 == Знайдіть та відобразіть всі символи одинарної лапки (') у тексті
@@ -13,7 +18,7 @@ alice_in_wonderland = (
     '—— so long as I get somewhere, Alice added as an explanation.\n'
     "Oh, you're sure to do that, said the Cat, if you only walk long enough."
 )
-print(alice_in_wonderland)
+_log.info(alice_in_wonderland)
 
 """
     # Задачі 04 -10:
@@ -31,7 +36,7 @@ black_sea_sq = 436_402
 azov_sea_sq = 37_800
 # just need to sum two sq
 main_sq = black_sea_sq + azov_sea_sq
-print(main_sq)
+_log.info(main_sq)
 
 # task 05
 """
@@ -48,9 +53,9 @@ warehouse3 = 375_291 - 250_449
 warehouse1 = 375_291 - 222_950
 # find number of all goods in warehouse N2
 warehouse2 = all_warehouses - (warehouse3 + warehouse1)
-print(f'Warehouse N1: {warehouse1}')
-print(f'Warehouse N2: {warehouse2}')
-print(f'Warehouse N3: {warehouse3}')
+_log.info(f'Warehouse N1: {warehouse1}')
+_log.info(f'Warehouse N2: {warehouse2}')
+_log.info(f'Warehouse N3: {warehouse3}')
 
 # task 06
 """
@@ -65,7 +70,7 @@ payment_per_m = 1179
 timeperiod_in_m = 18
 # pc cost = 1m payment * all m
 pc_cost = payment_per_m * timeperiod_in_m
-print(pc_cost)
+_log.info(pc_cost)
 
 # task 07
 """
@@ -75,12 +80,15 @@ b) 9907 : 9     e) 7128 : 5
 c) 2789 : 5     f) 19224 : 9
 """
 
-print(8019 % 8)
-print(9907 % 9)
-print(2789 % 5)
-print(7248 % 6)
-print(7128 % 5)
-print(19224 % 9)
+a_value = 8019 % 8
+b_value = 9907 % 9
+c_value = 2789 % 5
+d_value = 7248 % 6
+e_value = 7128 % 5
+f_value = 19224 % 9
+_log.info(f'Results: a = {a_value} b = {b_value}')
+_log.info(f'Results: c = {c_value} d = {d_value}')
+_log.info(f'Results: e = {e_value} f = {f_value}')
 
 # task 08
 """
@@ -103,7 +111,7 @@ water = 21
 # sum all
 all_needed_money = ((big_pizza * 4) + (middle_pizza * 2) + (
     juice * 4) + cake + (water * 3))
-print(f'Sum: {all_needed_money} UAH')
+_log.info(f'Sum: {all_needed_money} UAH')
 
 # task 09
 """
@@ -115,7 +123,7 @@ print(f'Sum: {all_needed_money} UAH')
 photo = 232
 one_page = 8
 pages_all = int(photo / 8)
-print(f'Pages: {pages_all}')
+_log.info(f'Pages: {pages_all}')
 
 # task 10
 """
@@ -131,11 +139,11 @@ print(f'Pages: {pages_all}')
 distance = 1600
 # gas we need per 1 km
 gas_per_km = 9 / 100
-print(gas_per_km)
+_log.info(gas_per_km)
 tank = 48
 # 1) gas we need for distance between Kharkiv and Budapest
 gas_all_distance = distance * gas_per_km
-print(f'Gas for all diatance: {gas_all_distance}')
+_log.info(f'Gas for all diatance: {gas_all_distance}')
 # 2) times to stop in gas station
 gas_station = gas_all_distance // tank
-print(f'Times to stop in gas station: {gas_station}')
+_log.info(f'Times to stop in gas station: {int(gas_station)}')
