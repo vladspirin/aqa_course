@@ -10,6 +10,6 @@ Install all needed additional libraries using PIP, example pip install <your_lib
 
 Add all needed contributors
 
-### Branches
+### Work with branches
 Add new code to DEV branch and wait for review before the merge to main
 After the pull request is approved, we need to delete the active hw#00 branch.
