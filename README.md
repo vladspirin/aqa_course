@@ -1,4 +1,4 @@
-# aqa_course
+# Python Automation QA Engineer course
 
 ### Virtual environment
 
