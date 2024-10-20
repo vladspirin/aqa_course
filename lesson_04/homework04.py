@@ -3,6 +3,7 @@
 
 import logging
 
+SEPARATOR = '=' * 75
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='')
 _log = logging.getLogger(__name__)
@@ -38,15 +39,16 @@ rolling in wealth."""
 _log.info(adwentures_of_tom_sawer)
 str_result = adwentures_of_tom_sawer.replace('\n', ' ')
 _log.info(str_result)
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 02 ==
 """ Замініть .... на пробіл
 """
 
-str_result2 = str_result.replace(' .... ' and ' ....', ' ')
+str_result2 = str_result.replace(' .... ', ' ')
+str_result2 = str_result.replace(' ....', ' ')
 _log.info(str_result2)
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 03 ==
 """ Зробіть так, щоб у тексті було не більше одного пробілу між словами.
@@ -54,7 +56,7 @@ _log.info('=' * 75)
 
 str_result3 = str_result2.replace('  ', ' ')
 _log.info(str_result3)
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 
 # task 04
@@ -63,18 +65,19 @@ _log.info('=' * 75)
 
 letter_appears = str_result3.count('h')
 _log.info(f'h letter appears: {letter_appears} times')
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 05
 """ Виведіть, скільки слів у тексті починається з Великої літери?
 """
 
+words = str_result3.split()
 counter = 0
-for i in str_result3:
-    if i.isupper():
+for word in words:
+    if word.istitle():
         counter += 1
 _log.info(f'Upper letter appears: {counter} times')
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 06
 """ Виведіть позицію, на якій слово Tom зустрічається вдруге
@@ -82,7 +85,7 @@ _log.info('=' * 75)
 
 name = str_result3.find('Tom', 1)
 _log.info(f'Second time Tom appears in {name} position')
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 07
 """ Розділіть змінну adwentures_of_tom_sawer по кінцю речення.
@@ -92,7 +95,7 @@ _log.info('=' * 75)
 adwentures_of_tom_sawer_sentences = None
 adwentures_of_tom_sawer_sentences = str_result3.split('. ')
 _log.info(adwentures_of_tom_sawer_sentences)
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 08
 """ Виведіть четверте речення з adwentures_of_tom_sawer_sentences.
@@ -100,14 +103,14 @@ _log.info('=' * 75)
 """
 
 _log.info(adwentures_of_tom_sawer_sentences[3].lower())
-_log.info('=' * 75)
+_log.info(SEPARATOR)
 
 # task 09
 """ Перевірте чи починається якесь речення з "By the time".
 """
 
-_log.info('By the time' in str_result3)
-_log.info('=' * 75)
+_log.info(adwentures_of_tom_sawer_sentences[3].startswith('By the time'))
+_log.info(SEPARATOR)
 
 # task 10
 """ Виведіть кількість слів останнього речення
@@ -115,4 +118,4 @@ _log.info('=' * 75)
 """
 
 _log.info(len(adwentures_of_tom_sawer_sentences[-1].split()))
-_log.info('=' * 75)
+_log.info(SEPARATOR)
