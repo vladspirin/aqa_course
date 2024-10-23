@@ -7,7 +7,7 @@ SEPARATOR = '=' * 75
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='')
 _log = logging.getLogger(__name__)
-adwentures_of_tom_sawer = """\
+adventures_of_tom_sawer = """\
 Tom gave up the brush with reluctance in his .... face but alacrity
 in his heart. And while
 the late steamer
@@ -36,8 +36,8 @@ rolling in wealth."""
 розбиті випадковим чином, через помилку.
 треба замінити кінець абзацу на пробіл .replace("\n", " ")"""
 
-_log.info(adwentures_of_tom_sawer)
-str_result = adwentures_of_tom_sawer.replace('\n', ' ')
+_log.info(adventures_of_tom_sawer)
+str_result = adventures_of_tom_sawer.replace('\n', ' ')
 _log.info(str_result)
 _log.info(SEPARATOR)
 
@@ -92,9 +92,8 @@ _log.info(SEPARATOR)
 Збережіть результат у змінній adwentures_of_tom_sawer_sentences
 """
 
-adwentures_of_tom_sawer_sentences = None
-adwentures_of_tom_sawer_sentences = str_result3.split('. ')
-_log.info(adwentures_of_tom_sawer_sentences)
+adventures_of_tom_sawer_sentences = str_result3.split('. ')
+_log.info(adventures_of_tom_sawer_sentences)
 _log.info(SEPARATOR)
 
 # task 08
@@ -102,14 +101,14 @@ _log.info(SEPARATOR)
 Перетворіть рядок у нижній регістр.
 """
 
-_log.info(adwentures_of_tom_sawer_sentences[3].lower())
+_log.info(adventures_of_tom_sawer_sentences[3].lower())
 _log.info(SEPARATOR)
 
 # task 09
 """ Перевірте чи починається якесь речення з "By the time".
 """
 
-_log.info(adwentures_of_tom_sawer_sentences[3].startswith('By the time'))
+_log.info(adventures_of_tom_sawer_sentences[3].startswith('By the time'))
 _log.info(SEPARATOR)
 
 # task 10
@@ -117,5 +116,5 @@ _log.info(SEPARATOR)
 з adwentures_of_tom_sawer_sentences.
 """
 
-_log.info(len(adwentures_of_tom_sawer_sentences[-1].split()))
+_log.info(len(adventures_of_tom_sawer_sentences[-1].split()))
 _log.info(SEPARATOR)
