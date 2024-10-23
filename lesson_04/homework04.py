@@ -45,8 +45,8 @@ _log.info(SEPARATOR)
 """ Замініть .... на пробіл
 """
 
-str_result2 = str_result.replace(' .... ', ' ')
-str_result2 = str_result.replace(' ....', ' ')
+str_result2 = str_result.replace(' .... ', ' ').replace(' ....', ' ')
+
 _log.info(str_result2)
 _log.info(SEPARATOR)
 
