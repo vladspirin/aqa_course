@@ -1,4 +1,4 @@
-# Python QA Automation Engineer course
+# Python QA Automation course
 
 ### Virtual environment
 
