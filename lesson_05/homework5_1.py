@@ -55,14 +55,17 @@ search_criteria = (2017, 1.6, 36000)
 
 # copy the original dict
 dict_copy = car_data.copy()
-# change to shorter name for my expression
-sc = search_criteria
+
 dict_result = dict(
-    # 1. Use build-in filter() inside the sorted() with our filtering rules
-    # 2. Sort by price
-    # 3. Using slice take only first 5 results
-    sorted(filter(
-        lambda x: x[1][2] >= sc[1] and x[1][1] >= sc[0] and x[1][4] <= sc[2],
-        dict_copy.items()), key=lambda value: value[1][4])[:5],
+    sorted(
+        {
+            k: v for k, v in dict_copy.items()
+            if (
+                v[2] >= search_criteria[1] and
+                v[1] >= search_criteria[0] and
+                v[4] <= search_criteria[2]
+            )
+        }.items(),
+        key=lambda x: x[1][4])[:5],
 )
 _log.info(dict_result)
