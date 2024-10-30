@@ -10,6 +10,54 @@ _log = logging.getLogger(__name__)
 # write code that will help us to get cars that satisfy search_criteria.
 # Cars should be sorted by price ascending.
 # We should print up to five (5) first found elements
+
+
+# 1. condition to check the criteria
+def check_car_criteria(car, year, engine_size, max_price):
+    """
+    Check car by criteria.
+
+    Args:
+        car (str): string.
+        year (int): integer.
+        engine_size (float): float.
+        max_price (int): integer.
+    Returns:
+        bool: Result of condition.
+    """
+    color, car_year, engine, car_type, price = car
+    return car_year >= year and engine >= engine_size and price <= max_price
+
+
+# 2. filter by criteria
+def filter_cars(car_data, search_criteria):
+    """
+    Filter cars by car data and searcing criteria.
+
+    Args:
+        car_data (list): list.
+        search_criteria (tupple): tupple.
+    Returns:
+        dict: Filtered data.
+    """
+    year, engine_size, max_price = search_criteria
+    return {car: data for car, data in car_data.items()
+            if check_car_criteria(data, year, engine_size, max_price)}
+
+
+# 3. sort filtered cars by price
+def sort_cars_by_price(filtered_cars):
+    """
+    Sort cars by price.
+
+    Args:
+        filtered_cars (func): function
+    Returns:
+        list: Sorted cars.
+    """
+    return sorted(filtered_cars.items(), key=lambda item: item[1][4])
+
+
 car_data = {
     'Mercedes': ('silver', 2019, 1.8, 'sedan', 50000),
     'Audi': ('black', 2020, 2.0, 'sedan', 55000),
@@ -53,19 +101,10 @@ car_data = {
 }
 search_criteria = (2017, 1.6, 36000)
 
-# copy the original dict
-dict_copy = car_data.copy()
+# Filter and sort using my functions
+filtered_cars = filter_cars(car_data, search_criteria)
+sorted_cars = sort_cars_by_price(filtered_cars)
 
-dict_result = dict(
-    sorted(
-        {
-            k: v for k, v in dict_copy.items()
-            if (
-                v[2] >= search_criteria[1] and
-                v[1] >= search_criteria[0] and
-                v[4] <= search_criteria[2]
-            )
-        }.items(),
-        key=lambda x: x[1][4])[:5],
-)
-_log.info(dict_result)
+# Output the result
+for car, data in sorted_cars[:5]:
+    _log.info(f'{car}: {data}')
