@@ -20,7 +20,8 @@ def multiplication_table(number):
     multiplier = 1
 
     # Complete the while loop condition.
-    while multiplier <= number or multiplier > number:
+    while True:
+
         # second solution only (while multiplier:)
         # it will be always True before the break
         result = (number * multiplier)
