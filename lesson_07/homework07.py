@@ -21,9 +21,6 @@ def multiplication_table(number):
 
     # Complete the while loop condition.
     while True:
-
-        # second solution only (while multiplier:)
-        # it will be always True before the break
         result = (number * multiplier)
         # десь тут помилка, а може не одна
         if result > 25:
@@ -128,9 +125,7 @@ def find_substring(str1, str2):
     Returns:
         int: substring index or -1
     """
-    if str2 in str1:
-        return str1.index(str2)
-    return -1
+    return str1.find(str2)
 
 
 str1 = 'Hello, world!'
