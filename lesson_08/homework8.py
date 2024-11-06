@@ -21,62 +21,53 @@ import logging
 logging.basicConfig(level=logging.INFO, format='')
 _log = logging.getLogger(__name__)
 
-req_lst = ['1,2,3,4', '1,2,3,4,50', 'qwerty1,2,3']
-# create a copy of the list
-lst_copy = req_lst[:]
 
-
-# split elements by comma separator
-def separate_elements(lst):
+# Now, only one function for split and convert to int
+def split_and_convert(lst):
     """
-    Separate elements in the list.
+    Split elements by comma and convert to integers.
 
     Args:
-        lst (list): list with string elements.
+        lst (list): List of strings.
     Returns:
-        list: return list with sublists.
+        list: List of sublists with converted integers or replacement message.
     """
-    return [elem.split(',') for elem in lst]
+    result = []
+    for elem in lst:
+        try:
+            # Added strip() in case of unpredictable spaces
+            result.append([int(num.strip()) for num in elem.split(',')])
+        except ValueError:
+            result.append("I can't do that!")  # Add msg if unable to convert
+    return result
 
 
-# convert string digits to int
-def convert_str_to_int(lst):
-    """
-    Convert string nums to int.
-
-    Args:
-        lst (list): list with string digit elements.
-    Returns:
-        list: return list with int.
-    """
-    return [int(num) for num in lst]
-
-
-# put try/except to func for better scalability
 def convert_and_replace(lst):
     """
-    Convert list with different type of elements.
+    Process a list by summing sublists or replacing with a message.
 
     Args:
-        lst (list): list with string elements.
+        lst (list): List of sublists or messages.
     Returns:
-        list: return list with converted replaced element(s).
+        list: List with either sums of integers or replacement message.
     """
-    for item, sublist in enumerate(lst):
-        try:
-            # sum only sublists where all int
-            lst[item] = sum(convert_str_to_int(sublist))
-        except ValueError:
-            # in case of ValueError replace to the text
-            lst[item] = "I can't do that!"
-        except Exception as g_exc:
-            _log.info('Global error occurred:')
-            _log.info(g_exc)
+    for indx, sublist in enumerate(lst):
+        if isinstance(sublist, list):  # Check if sublist is list
+            try:
+                lst[indx] = sum(sublist)  # Sum if list with int
+            except TypeError:
+                lst[indx] = "I can't do that!"
     return lst
 
 
-result = convert_and_replace(separate_elements(lst_copy))
+# My data
+req_lst = ['1,2,3,4', '1,2,3,4,50', 'qwerty1,2,3']
+# Call the functions
+result = convert_and_replace(split_and_convert(req_lst))
 
-# Expected result
-value1, value2, value3 = result
-_log.info(f'{value1}, {value2}, {value3}')
+# Additional check if more than 3 list elements
+if len(result) == 3:
+    value1, value2, value3 = result
+    _log.info(f'{value1}, {value2}, {value3}')
+else:
+    _log.info(f'Unexpected result length: {result}')
