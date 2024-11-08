@@ -34,7 +34,7 @@ def zip_and_fill(lst1, lst2):
 
     Filling empty spots with zeros.
     """
-    return [(x, y) for x, y in zip_longest(lst1, lst2, fillvalue=0)]
+    return list(zip_longest(lst1, lst2, fillvalue=0))
 
 
 l1 = [2, 4, 6, 8, 10]
