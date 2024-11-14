@@ -4,6 +4,8 @@
 import logging
 import os
 
+import pytest
+
 from homework10 import log_event
 
 
@@ -177,23 +179,12 @@ class TestLogEvent:
     def test_log_event_empty_param(*args):
         """Test logging when parameters are missing."""
         # case 1: no parameters
-        try:
+        with pytest.raises(TypeError):
             log_event()
-        except TypeError:
-            pass
-        else:
-            raise AssertionError(
-                'Expected TypeError when no parameters were passed',
-            )
+
         # case 2: one parameter is present
-        try:
+        with pytest.raises(TypeError):
             log_event('test_user4')
-        except TypeError:
-            pass
-        else:
-            raise AssertionError(
-                'Expected TypeError when only one parameter was passed',
-            )
 
 
 # Log file name
