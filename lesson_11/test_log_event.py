@@ -2,11 +2,29 @@
 
 
 import logging
-import os
 
 import pytest
 
 from homework10 import log_event
+
+# Log file name
+LOG_FILE = 'login_system.log'
+
+# Setup logger for the test module
+_log = logging.getLogger('log_event')
+_log.setLevel(logging.INFO)
+
+# Clear previous handlers if exists
+if _log.hasHandlers():
+    _log.handlers.clear()
+
+# Create a new handler (write to file)
+# Added levelname to see correct output
+file_handler = logging.FileHandler(LOG_FILE)
+file_handler.setFormatter(
+    logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'),
+)
+_log.addHandler(file_handler)
 
 
 class TestLogEvent:
@@ -30,39 +48,18 @@ class TestLogEvent:
     # Test Case N1
     def test_log_event_success(*args):
         """Checking the correct logging of the successful login event."""
-        # Clear log-file if exists in folder. Use os.path to find file
-        if os.path.exists(log_file):
-            with open(log_file, 'w'):
-                pass
-
-        # Setup logger for the TC
-        _log = logging.getLogger('log_event')
-        _log.setLevel(logging.INFO)
-
-        # Clear previous handlers if exists
-        if _log.hasHandlers():
-            _log.handlers.clear()
-
-        # Create a new handler (write to file)
-        # Added levelname to see correct output
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'),
-        )
-        _log.addHandler(file_handler)
-
         # Call the function under test
         log_event('test_user', 'success')
 
-        # Main logic here. Read log-file. Error handling added if no file
+        # Read log-file. Error handling added if no file
         try:
-            with open(log_file, 'r') as lf:
+            with open(LOG_FILE, 'r') as lf:
                 log_txt = lf.read()
         except FileNotFoundError:
-            raise AssertionError('Log file was not found.')
+            pytest.fail('Log file was not found.')
         # check if success == INFO level
         if 'INFO' not in log_txt:
-            raise AssertionError("Log output does not contain 'INFO'")
+            pytest.fail("Log output does not contain 'INFO'")
 
     # Test Case N2
     def test_log_event_expired(*args):
@@ -70,41 +67,20 @@ class TestLogEvent:
         Check expired system login in log events.
 
         Expected result:
-        'Login event - Username: test_user2, Status: expired' in log_file
+        'Login event - Username: test_user2, Status: expired' in LOG_FILE
         """
-        # Clear log-file if exists in folder. Use os.path to find file
-        if os.path.exists(log_file):
-            with open(log_file, 'w'):
-                pass
-
-        # Setup logger for the TC
-        _log = logging.getLogger('log_event')
-        _log.setLevel(logging.INFO)
-
-        # Clear previous handlers if exists
-        if _log.hasHandlers():
-            _log.handlers.clear()
-
-        # Create a new handler (write to file)
-        # Added levelname to see correct output
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'),
-        )
-        _log.addHandler(file_handler)
-
         # Call the function under test
         log_event('test_user2', 'expired')
 
-        # Main logic here. Read log-file. Error handling added if no file
+        # Read log-file. Error handling added if no file
         try:
-            with open(log_file, 'r') as lf:
+            with open(LOG_FILE, 'r') as lf:
                 log_txt = lf.read()
         except FileNotFoundError:
-            raise AssertionError('Log file was not found.')
+            pytest.fail('Log file was not found.')
         # check if expired == WARNING level
         if 'WARNING' not in log_txt:
-            raise AssertionError("Log output does not contain 'WARNING'")
+            pytest.fail("Log output does not contain 'WARNING'")
 
     # Test Case N3
     def test_log_event_failed(*args):
@@ -114,72 +90,30 @@ class TestLogEvent:
         Expected result:
         'Login event - Username: test_user3, Status: failed' in log_file
         """
-        # Clear log-file if exists in folder. Use os.path to find file
-        if os.path.exists(log_file):
-            with open(log_file, 'w'):
-                pass
-
-        # Setup logger for the TC
-        _log = logging.getLogger('log_event')
-        _log.setLevel(logging.INFO)
-
-        # Clear previous handlers if exists
-        if _log.hasHandlers():
-            _log.handlers.clear()
-
-        # Create a new handler (write to file)
-        # Added levelname to see correct output
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'),
-        )
-        _log.addHandler(file_handler)
-
         # Call the function under test
         log_event('test_user3', 'failed')
 
-        # Main logic here. Read log-file. Error handling added if no file
+        # Read log-file. Error handling added if no file
         try:
-            with open(log_file, 'r') as lf:
+            with open(LOG_FILE, 'r') as lf:
                 log_txt = lf.read()
         except FileNotFoundError:
-            raise AssertionError('Log file was not found.')
+            pytest.fail('Log file was not found.')
         # check if failed == ERROR level
         if 'ERROR' not in log_txt:
-            raise AssertionError("Log output does not contain 'ERROR'")
+            pytest.fail("Log output does not contain 'ERROR'")
 
     # Test Case N4 - Negative scenario
     def test_log_event_invalid_status(*args):
         """Test logging with an invalid status parameter."""
-        # Clear log-file if exists in folder. Use os.path to find file
-        if os.path.exists(log_file):
-            with open(log_file, 'w'):
-                pass
-
-        # Setup logger for the TC
-        _log = logging.getLogger('log_event')
-        _log.setLevel(logging.INFO)
-
-        # Clear previous handlers if exists
-        if _log.hasHandlers():
-            _log.handlers.clear()
-
-        # Create a new handler (write to file)
-        # Added levelname to see correct output
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'),
-        )
-        _log.addHandler(file_handler)
-
         # Call the function under test
         log_event('test_user4', 'unknown_status')
 
         # Check if error msg was added and failed == ERROR level
-        with open(log_file, 'r') as lf:
+        with open(LOG_FILE, 'r') as lf:
             log_txt = lf.read()
         if 'ERROR' not in log_txt:
-            raise AssertionError("Log output does not contain 'ERROR'")
+            pytest.fail("Log output does not contain 'ERROR'")
 
     # Test Case N5 - Negative scenario
     def test_log_event_empty_param(*args):
@@ -191,7 +125,3 @@ class TestLogEvent:
         # case 2: one parameter is present
         with pytest.raises(TypeError):
             log_event('test_user4')
-
-
-# Log file name
-log_file = 'login_system.log'
