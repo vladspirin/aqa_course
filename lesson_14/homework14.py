@@ -20,10 +20,11 @@ class Student:
     """
 
     # Use the constructor __init__ here
-    def __init__(self, name, surname, average_grade):
+    def __init__(self, name, surname, age, average_grade):
         """Initialize a new student with parameters."""
         self.name = name
         self.surname = surname
+        self.age = age
         self.average_grade = average_grade
 
     def average_grade_update(self, new_ave_grade):
@@ -31,7 +32,7 @@ class Student:
         self.average_grade = new_ave_grade
 
 
-my_student = Student('Roberto', 'Firmino', 10)
+my_student = Student('Roberto', 'Firmino', 16, 10)
 print(f'Init average grade: {my_student.average_grade}')
 my_student.average_grade_update(11)
 print(f'New average grade: {my_student.average_grade}')
