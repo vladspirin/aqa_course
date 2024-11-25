@@ -1,4 +1,12 @@
-"""Homework 14.1 Student object."""
+"""Homework 14.1 Student object.
+
+Create a "Student" class with the attributes "first name",
+"last name", "age" and "GPA".
+Create an object for this class by introducing the student.
+Then, add a method to the "Student" class that allows you
+to change the student's GPA.
+Display the student's information and change their GPA.
+"""
 
 
 class Student:
