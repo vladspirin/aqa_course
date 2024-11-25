@@ -46,3 +46,10 @@ def save_remote_file_to_local(url, data_format, timeout, base_dir='downloads'):
     except requests.exceptions.RequestException as err:
         print(f'Download file error: {err}')
         return None
+
+
+
+path1 = 'https://raw.githubusercontent.com/dntpanix/automation_qa/refs/heads/main/ideas_for_test/work_with_csv/random-michaels.csv'
+path2 = 'https://raw.githubusercontent.com/dntpanix/automation_qa/refs/heads/main/ideas_for_test/work_with_csv/random.csv'
+save_remote_file_to_local(path1, 'csv', 10)
+save_remote_file_to_local(path2, 'csv', 10)
