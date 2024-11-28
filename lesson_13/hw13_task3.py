@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 _log = logging.getLogger(__name__)
 
-xml_file_path = Path('downloads/xml/groups.xml')
+xml_file_path = Path('my_downloads/xml/groups.xml')
 
 
 def search_group(file_path, group_number):

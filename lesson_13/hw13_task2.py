@@ -46,7 +46,7 @@ def process_json_files(json_files):
 
 
 if __name__ == '__main__':
-    directory = Path('downloads/json/')
+    directory = Path('my_downloads/json/')
     # get the list with files
     json_files = get_json_files(directory)
     # process files if exist

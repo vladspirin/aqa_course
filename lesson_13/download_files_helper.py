@@ -6,7 +6,7 @@ import os
 import requests
 
 
-def save_remote_file_to_local(url, data_format, timeout, base_dir='downloads'):
+def save_remote_file_to_local(url, data_format, timeout, base_dir='my_downloads'):
     """
     Download a file from a remote URL and saves it locally.
 

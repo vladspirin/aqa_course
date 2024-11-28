@@ -17,7 +17,7 @@ EXPECTED_FILENAME = 'result_combined.csv'
 
 def get_downloads_file_path(filename):
     """Get file path from downloads."""
-    return Path('downloads') / 'csv' / filename
+    return Path('my_downloads') / 'csv' / filename
 
 
 def read_csv(filename):
