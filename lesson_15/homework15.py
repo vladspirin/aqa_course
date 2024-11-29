@@ -52,3 +52,5 @@ class Rhombus:
                 raise ValueError('Sum of angel_a and b must be equal 180.')
         if key in ('angle_b') and value is not None and value <= 0:
             raise ValueError(f'{key} must be a positive number')
+
+rhombus = Rhombus()
