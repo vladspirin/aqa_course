@@ -29,37 +29,35 @@ def search_group(file_path, group_number):
     Args:
         file_path (str or Path): The path to the XML file.
         group_number (str or int): The group number to search for.
+
     Returns:
-        tuple: A tuple containing the values of 'timingExbytes'
-               and 'incoming' if the group is found, otherwise None.
+        str or None: The value of 'timingExbytes/incoming' if found,
+                    otherwise None.
     """
     try:
         tree = ET.parse(file_path)
         root = tree.getroot()
-        # Find the element by group/number
+
         for group in root.findall('.//group'):
             number_tag = group.find('number')
-            if number_tag is not None:
-                # Strip to avoid trailing spaces
-                group_number_text = number_tag.text.strip()
-                # Ensure both are strings
-                if str(group_number) == group_number_text:
-                    timing_exbytes = group.find('timingExbytes')
-                    if timing_exbytes is not None:
-                        incoming = timing_exbytes.find('incoming')
-                        if incoming is not None:
-                            _log.info(f"""timingExbytes:
-                                    {timing_exbytes.find('micro').text},
-                                    incoming: {incoming.text}""")
-                            return (timing_exbytes.find('micro').text,
-                                    incoming.text)
-            else:
-                _log.warning(f"""Group with number {group_number}
-                does not contain a <number> tag.""")
-        _log.info(f'No group with number {group_number} found.')
+            if number_tag is None:
+                _log.warning('Group without <number> tag found, skipping.')
+                continue
+
+            if str(group_number) == number_tag.text.strip():
+                timing_exbytes = group.find('.//timingExbytes/incoming')
+                if timing_exbytes is not None:
+                    _log.info(f'Found incoming: {timing_exbytes.text}')
+                    return timing_exbytes.text
+
+                _log.warning('Group found but <incoming> tag is missing.')
+                return None
+
+        _log.info(f'Group {group_number} not found in the XML.')
         return None
+
     except Exception as err:
-        _log.error(f'Error occurred: {str(err)}')
+        _log.error(f'Error occurred while processing the file: {err}')
         return None
 
 
