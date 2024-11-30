@@ -54,8 +54,10 @@ class Rhombus:
             raise ValueError(f'{key} must be a positive number')
 
 
+# scenario 1
 rhombus = Rhombus(5, 90)
-print(rhombus.side_a)
-print(rhombus.angle_a)
-print(rhombus.angle_b)
 print(rhombus.__dict__)
+# scenario 2
+rhombus2 = Rhombus(5, 30, 150)
+print(rhombus2.__dict__)
+# scenario 3, 4, 5 - negative values or 0. ValueError will be raised.
