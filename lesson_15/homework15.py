@@ -53,4 +53,9 @@ class Rhombus:
         if key in ('angle_b') and value is not None and value <= 0:
             raise ValueError(f'{key} must be a positive number')
 
-rhombus = Rhombus()
+
+rhombus = Rhombus(5, 90)
+print(rhombus.side_a)
+print(rhombus.angle_a)
+print(rhombus.angle_b)
+print(rhombus.__dict__)
