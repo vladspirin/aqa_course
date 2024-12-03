@@ -18,6 +18,8 @@ Write a test that checks the presence of attributes
 from both Manager and Developer in the TeamLead class.
 """
 
+SEP = '=' * 50
+
 
 class Employee:
     """The class creates an Employee."""
@@ -33,17 +35,17 @@ class Manager(Employee):
 
     def __init__(self, name, salary, department):
         """Initialize a Magager role with parameters."""
-        super().__init__(name, salary)
         self.department = department
+        super().__init__(name, salary)
 
 
 class Developer(Employee):
     """The class creates a Developer."""
 
-    def __init__(self, name, salary, programming_language):
+    def __init__(self, name, salary, programming_language=None):
         """Initialize a Developer role with parameters."""
-        super().__init__(name, salary)
         self.programming_language = programming_language
+        super().__init__(name, salary)
 
 
 class TeamLead(Manager, Developer):
@@ -51,11 +53,22 @@ class TeamLead(Manager, Developer):
 
     def __init__(self, name, salary, department, team_size):
         """Initialize a TeamLead role with parameters."""
-        super().__init__(name, salary, department)
         self.team_size = team_size
+        super().__init__(name, salary, department)
 
 
-employee = Employee()
-manager = Manager()
-developer = Developer()
-team_lead = TeamLead()
+if __name__ == '__main__':
+    employee = Employee('Bob', 2000)
+    print(employee.__dict__)
+    print(SEP)
+
+    manager = Manager('Marta', 9000, 'Engineering')
+    print(manager.__dict__)
+    print(SEP)
+
+    developer = Developer('Robert', 6000, 'Python')
+    print(developer.__dict__)
+    print(SEP)
+
+    team_lead = TeamLead('Eve', 7000, 'Engineering', 6)
+    print(team_lead.__dict__)
