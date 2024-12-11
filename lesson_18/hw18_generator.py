@@ -25,7 +25,7 @@ def generate_fibonacci_nums(n: int):
 
 if __name__ == '__main__':
     # task 1 output
-    print('Even nums: (case 1)')
+    print('Even nums: ')
     gen1 = generate_even_nums(12)
     for i in gen1:
         print(i)
